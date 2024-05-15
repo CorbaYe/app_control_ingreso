@@ -41,12 +41,24 @@ public class app {
     }
 
     private static void fnt_registrar_control(){
+        sw_c = false;
         String id = JOptionPane.showInputDialog(null, "Ingrese el id del personal");
-        Date currentDate = new Date();
-        LocalTime currenTime = LocalTime.now();
-        cls_control objRegistro = new cls_control(id, "" + currentDate, "" + currenTime);
-        control[pos_c] = objRegistro;
-        pos_c++;
-        JOptionPane.showMessageDialog(null, "Persona registrada con éxito");
+        for(int i = 0; i < pos_p; i++){
+            if (personal[i].getId_str().equals(id)) {
+                sw_c = true;
+                break;
+            }
+        }
+        if (sw_c) {
+            Date currentDate = new Date();
+            LocalTime currenTime = LocalTime.now();
+            cls_control objRegistro = new cls_control(id, "" + currentDate, "" + currenTime);
+            control[pos_c] = objRegistro;
+            pos_c++;
+            JOptionPane.showMessageDialog(null, "Persona registrada con éxito");
+        }else{
+            JOptionPane.showMessageDialog(null, "No se encontraron registros");
+        }
+
     }
 }
